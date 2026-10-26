@@ -1,0 +1,205 @@
+{
+  "type": "object",
+  "description": "SahayakHub routing verdict. Every field is always present. Status rules: ready = at least 1 delivery, no pending entity, block_reason null. needs_verification = no deliveries, exactly 1 pending entity, block_reason null. blocked_by_tier = no deliveries, no pending entity, block_reason set. no_action = no deliveries, no pending entity, entity_update null, block_reason null.",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The verdict. ready: deliveries are authorised. needs_verification: freeze the task and ask about one unresolved person. blocked_by_tier: a free/paid ceiling was exceeded. no_action: nothing to deliver or ask.",
+      "enum": [
+        "ready",
+        "needs_verification",
+        "blocked_by_tier",
+        "no_action"
+      ]
+    },
+    "block_reason": {
+      "type": "string",
+      "nullable": true,
+      "description": "Set only when status is blocked_by_tier; null for every other status.",
+      "enum": [
+        "max_recipients_per_message",
+        "unique_contact_cap",
+        "broadcast_not_allowed",
+        "group_individual_cap"
+      ]
+    },
+    "pending_entities": {
+      "type": "array",
+      "description": "Emit [] unless status is needs_verification, in which case exactly one element.",
+      "minItems": 0,
+      "maxItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Known contact name exactly as given, or the unknown name as typed in Roman letters.",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "question_text": {
+            "type": "string",
+            "description": "One of the fixed verification questions with [Name] substituted.",
+            "minLength": 1,
+            "maxLength": 300
+          }
+        },
+        "required": [
+          "name",
+          "question_text"
+        ],
+        "propertyOrdering": [
+          "name",
+          "question_text"
+        ]
+      }
+    },
+    "entity_update": {
+      "type": "object",
+      "nullable": true,
+      "description": "Non-null only when answering an open verification (ready, needs_verification or blocked_by_tier); null for no_action and for normal messages. Fields the user did not state are null.",
+      "properties": {
+        "contact_id": {
+          "type": "string",
+          "description": "entity_contact_id from open_verification (digits only).",
+          "pattern": "^[0-9]{1,18}$"
+        },
+        "language_profile": {
+          "type": "string",
+          "nullable": true,
+          "enum": [
+            "Odia",
+            "Odia_Romanised",
+            "Hindi",
+            "Hindi_Romanised",
+            "Bengali",
+            "English"
+          ]
+        },
+        "designation_english": {
+          "type": "string",
+          "nullable": true,
+          "description": "English Title Case, letters, spaces and hyphens only, at most 40 characters.",
+          "maxLength": 40,
+          "pattern": "^[A-Za-z][A-Za-z -]*$"
+        },
+        "classification_domain": {
+          "type": "string",
+          "nullable": true,
+          "enum": [
+            "Business",
+            "Domestic"
+          ]
+        }
+      },
+      "required": [
+        "contact_id",
+        "language_profile",
+        "designation_english",
+        "classification_domain"
+      ],
+      "propertyOrdering": [
+        "contact_id",
+        "language_profile",
+        "designation_english",
+        "classification_domain"
+      ]
+    },
+    "deliveries": {
+      "type": "array",
+      "description": "Emit a formal empty array [] for every status except ready (never null, never omitted); at least 1 element when status is ready. One per distinct recipient.",
+      "minItems": 0,
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "properties": {
+          "sender_phone": {
+            "type": "string",
+            "nullable": true,
+            "description": "Copied verbatim from the input; null stays null."
+          },
+          "sender_bsuid": {
+            "type": "string",
+            "nullable": true,
+            "description": "Copied verbatim from the input; null stays null."
+          },
+          "recipient_contact_id": {
+            "type": "string",
+            "description": "A contact_id from known_contacts or the resumed entity_contact_id (digits only); never invented.",
+            "pattern": "^[0-9]{1,18}$"
+          },
+          "recipient_resolved_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "relationship_designation_english": {
+            "type": "string",
+            "description": "English Title Case, letters, spaces and hyphens only, at most 40 characters.",
+            "minLength": 1,
+            "maxLength": 40,
+            "pattern": "^[A-Za-z][A-Za-z -]*$"
+          },
+          "classification_domain": {
+            "type": "string",
+            "enum": [
+              "Business",
+              "Domestic"
+            ]
+          },
+          "target_language_profile": {
+            "type": "string",
+            "enum": [
+              "Odia",
+              "Odia_Romanised",
+              "Hindi",
+              "Hindi_Romanised",
+              "Bengali",
+              "English"
+            ]
+          },
+          "streamlined_translated_message": {
+            "type": "string",
+            "description": "Short polite WhatsApp text in the recipient's language profile; no emoji; no added information. Every inner double quote must be escaped as \\\" in the JSON string.",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "sender_phone",
+          "sender_bsuid",
+          "recipient_contact_id",
+          "recipient_resolved_name",
+          "relationship_designation_english",
+          "classification_domain",
+          "target_language_profile",
+          "streamlined_translated_message"
+        ],
+        "propertyOrdering": [
+          "sender_phone",
+          "sender_bsuid",
+          "recipient_contact_id",
+          "recipient_resolved_name",
+          "relationship_designation_english",
+          "classification_domain",
+          "target_language_profile",
+          "streamlined_translated_message"
+        ]
+      }
+    }
+  },
+  "required": [
+    "status",
+    "block_reason",
+    "pending_entities",
+    "entity_update",
+    "deliveries"
+  ],
+  "propertyOrdering": [
+    "status",
+    "block_reason",
+    "pending_entities",
+    "entity_update",
+    "deliveries"
+  ]
+}

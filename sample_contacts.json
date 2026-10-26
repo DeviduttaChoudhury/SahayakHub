@@ -1,0 +1,50 @@
+[
+ {
+  "contact_id": "101",
+  "name": "Ramesh",
+  "designation_english": "Driver",
+  "classification_domain": "Business",
+  "language_profile": "Odia_Romanised",
+  "channel": "hot"
+ },
+ {
+  "contact_id": "102",
+  "name": "Sunita",
+  "designation_english": "Wife",
+  "classification_domain": "Domestic",
+  "language_profile": "Hindi_Romanised",
+  "channel": "hot"
+ },
+ {
+  "contact_id": "103",
+  "name": "Suresh",
+  "designation_english": null,
+  "classification_domain": null,
+  "language_profile": null,
+  "channel": "cold"
+ },
+ {
+  "contact_id": "104",
+  "name": "Bou",
+  "designation_english": "Mother",
+  "classification_domain": "Domestic",
+  "language_profile": "Odia_Romanised",
+  "channel": "hot"
+ },
+ {
+  "contact_id": "105",
+  "name": "Bhaina",
+  "designation_english": "Elder Brother",
+  "classification_domain": "Domestic",
+  "language_profile": "Odia_Romanised",
+  "channel": "hot"
+ },
+ {
+  "contact_id": "106",
+  "name": "Bicky",
+  "designation_english": "Friend",
+  "classification_domain": "Domestic",
+  "language_profile": "Odia_Romanised",
+  "channel": "hot"
+ }
+]

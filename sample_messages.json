@@ -1,0 +1,106 @@
+[
+ {
+  "preset": "Pickup",
+  "message": "Ramesh ku kahibu kali sakala 7ta re gadi taiyar rakhibaku",
+  "tier": "paid",
+  "expect_status": "ready",
+  "expect_recipients": [
+   "Ramesh"
+  ],
+  "expect_nudges": {
+   "Ramesh": "6:45 AM tomorrow"
+  }
+ },
+ {
+  "preset": "Medicine reminder",
+  "message": "Bou ku kahibu aaj sandhya 7ta re BP tablet khaibaku",
+  "tier": "paid",
+  "expect_status": "ready",
+  "expect_recipients": [
+   "Bou"
+  ],
+  "expect_nudges": {
+   "Bou": "6:45 PM today"
+  }
+ },
+ {
+  "preset": "Doctor visit",
+  "message": "Bhaina ku kahibu kali sakala 9ta re Bou ku doctor ku nei jibaku",
+  "tier": "paid",
+  "expect_status": "ready",
+  "expect_recipients": [
+   "Bhaina"
+  ],
+  "expect_nudges": {
+   "Bhaina": "8:45 AM tomorrow"
+  }
+ },
+ {
+  "preset": "Pickup + nudge",
+  "message": "Bicky ku kahibu party 7ta re, 6:30 sudha ready thibe, mu 6ta re pakeidibi. Bhaina ku bhi same janaibu",
+  "tier": "free",
+  "expect_status": "ready",
+  "expect_recipients": [
+   "Bicky",
+   "Bhaina"
+  ],
+  "expect_nudges": {
+   "Bicky": "6:00 PM today",
+   "Bhaina": "6:00 PM today"
+  }
+ },
+ {
+  "preset": "Shop stock",
+  "message": "Ramesh ku kahibu aaj 4 pm re factory ru 20 charger anibaku",
+  "tier": "paid",
+  "expect_status": "ready",
+  "expect_recipients": [
+   "Ramesh"
+  ],
+  "expect_nudges": {
+   "Ramesh": "3:45 PM today"
+  }
+ },
+ {
+  "preset": "Two people",
+  "message": "Sunita ko bolo shaam ko doodh le aaye aur Ramesh ko bolo parson 9 baje aana",
+  "tier": "paid",
+  "expect_status": "ready",
+  "expect_recipients": [
+   "Sunita",
+   "Ramesh"
+  ],
+  "expect_nudges": {
+   "Sunita": null,
+   "Ramesh": "8:45 AM, day after tomorrow"
+  }
+ },
+ {
+  "preset": "New contact",
+  "message": "Mohan ko bolo kal subah 6 baje dukan kholna",
+  "tier": "paid",
+  "expect_status": "needs_verification",
+  "note": "Mohan is not in the directory; nothing is sent until verified."
+ },
+ {
+  "preset": "Unverified",
+  "message": "Suresh ko bolo 4 pm ko saaman bhejna",
+  "tier": "paid",
+  "expect_status": "needs_verification",
+  "note": "Suresh has no verified role or language."
+ },
+ {
+  "preset": "Pure Odia",
+  "message": "Ramesh ku pure odia script re lekho: aaj 4 pm re dukan ku asibaku",
+  "tier": "paid",
+  "expect_status": "ready",
+  "note": "Script override: reply is in Odia script."
+ },
+ {
+  "preset": "Broadcast",
+  "message": "sabko bolo aaj dukan band hai",
+  "tier": "free",
+  "expect_status": "blocked_by_tier",
+  "expect_block_reason": "broadcast_not_allowed"
+ }
+]
