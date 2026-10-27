@@ -1,4 +1,7 @@
 # SahayakHub
+> *Voice-first message routing on WhatsApp for elderly care and small shops in Odisha (Romanised Odia & Hinglish).*
+
+Families and small shops in Odisha rely heavily on WhatsApp, but coordinating care or orders in Romanised Odia/Hinglish creates chaos—messages get buried, elders miss medicine timings, and group chats become noisy. **SahayakHub** is a voice-first message router that takes a single messy voice/text message, uses AI to parse instructions, applies strict deterministic safety guards, and dispatches clean, individual task reminders to the right people.
 
 Voice-first message routing on WhatsApp for people who cannot use apps, built around Romanised Odia and Hinglish. A caregiver or shopkeeper sends one messy message ("Bicky ku kahibu party 7ta re, 6:30 sudha ready thibe, mu 6ta re pakeidibi. Bhaina ku bhi same janaibu"). SahayakHub works out who it is for, translates each person's part into their language, and sends it, with an optional timed reminder.
 
